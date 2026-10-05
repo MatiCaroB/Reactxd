@@ -11,7 +11,10 @@ function Cabezera() {
         <Navbar.Collapse id="menu-principal">
           <Nav className="ms-auto">
             <Nav.Link as={NavLink} to="/contacto">Contacto</Nav.Link>
-            <Nav.Link as={NavLink} to="/nosotros">Nosotros</Nav.Link>
+            <Nav.Link as={NavLink} to="/nosotros">Nosotrosa</Nav.Link>
+            <Nav.Link as={NavLink} to="/catalogo">Catalogo</Nav.Link>
+            <Nav.Link as={NavLink} to="/DetalleProducto">Detalle producto</Nav.Link>
+            
           </Nav>
         </Navbar.Collapse>
       </Container>

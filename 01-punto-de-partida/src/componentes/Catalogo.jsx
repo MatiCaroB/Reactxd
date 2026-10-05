@@ -1,24 +1,20 @@
+
 import { Routes, Route, Link, useParams } from 'react-router';
 import { ListGroup, Button, Alert } from 'react-bootstrap';
-
-const productos = [
-  { id: 1, nombre: 'Audífonos Onda',        precio: 39990 },
-  { id: 2, nombre: 'Parlante Roca',         precio: 54990 },
-  { id: 3, nombre: 'Teclado Cordillera',    precio: 74990 },
-];
+import { Card, Row, Col, Badge } from 'react-bootstrap';
+import { productos } from '../datos/productos';
 
 function Catalogo() {
   return (
     <ListGroup>
       {productos.map((p) => (
-        <ListGroup.Item key={p.id} action as={Link} to={`/producto/${p.id}`}>
+        <ListGroup.Item key={p.id} action as={Link} to={`/productos/${p.id}`}>
           {p.nombre}
         </ListGroup.Item>
       ))}
     </ListGroup>
   );
 }
-
 function Detalle() {
   const { id } = useParams();
   // Number(id) es imprescindible: id llega como texto.
@@ -29,19 +25,33 @@ function Detalle() {
   }
 
   return (
-    <div>
-      <h5>{producto.nombre}</h5>
-      <p>Precio: ${producto.precio.toLocaleString('es-CL')}</p>
-      <Button as={Link} to="/catalogo" variant="outline-secondary" size="sm">Volver</Button>
-    </div>
+    <Row className="justify-content-center">
+      <Col xs={12} sm={8} md={6}>
+        <Card className="h-100 shadow-sm">
+          <Card.Body className="d-flex flex-column">
+            <div className="fs-1 text-center">{producto.emoji}</div>
+            <Card.Title className="h6">{producto.nombre}</Card.Title>
+            <Badge bg="light" text="dark" className="align-self-start mt-auto">
+              {producto.categoria}
+            </Badge>
+          </Card.Body>
+        </Card>
+      </Col>
+    </Row>
   );
 }
 
+
+
 function Demo() {
   return (
+
     <Routes>
       <Route path="/catalogo" element={<Catalogo />} />
-      <Route path="/producto/:id" element={<Detalle />} />
+      <Route path="/productos/:id" element={<Detalle />} />
     </Routes>
+
   );
 }
+
+export default Catalogo;

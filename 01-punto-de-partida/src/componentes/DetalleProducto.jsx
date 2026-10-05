@@ -1,12 +1,20 @@
-import { useNavigate } from 'react-router'
 
-export default function DetalleProducto() {
-  const navegar = useNavigate()
+import { useParams, useNavigate } from 'react-router';
 
+const DetalleProducto = () => {
+  
+  const { id } = useParams(); 
+  
+  const navigate = useNavigate(); 
   function agregar() {
     onAgregar(producto)
-    navegar('/carrito')         
+    navegar('/carrito')          
   }
-
-  
 }
+
+
+
+
+
+
+export default DetalleProducto;
