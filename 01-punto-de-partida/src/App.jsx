@@ -1,7 +1,7 @@
 
 import Layout from './componentes/Layout.jsx'
 
-import { Route,Routes } from 'react-router'
+import { Route,Routes, Navigate } from 'react-router'
 import Inicio from './componentes/Inicio.jsx' 
 import Contacto from './componentes/Contacto.jsx'
 import Nosotros from './componentes/Nosotros.jsx'
@@ -9,9 +9,23 @@ import NoEncontrada from './componentes/NoEncontrada.jsx'
 import DetalleProducto from './componentes/DetalleProducto.jsx'
 import Catalogo from './componentes/Catalogo.jsx'
 export default function App() {
-  
+  const [carrito, setCarrito] = useState(leerCarritoGuardado)
+
+
+useEffect(() => {
+  localStorage.setItem('lqtlv-carrito', JSON.stringify(carrito))
+}, [carrito])
+function leerCarritoGuardado() {
+  try {
+    const guardado = localStorage.getItem('lqtlv-carrito')
+    return guardado ? JSON.parse(guardado) : []
+  } catch {
+    return []
+  }
+}
 
   return (
+    
     <Routes>
       <Route path = "/" element = {<Layout/>}>
       <Route index element={<Inicio />} />
